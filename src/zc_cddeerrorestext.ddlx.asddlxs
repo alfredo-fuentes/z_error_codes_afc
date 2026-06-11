@@ -1,0 +1,38 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Cód. de errores Text', 
+    typeNamePlural: 'Cód. de errores Text', 
+    title: {
+      type: #STANDARD, 
+      value: 'Langu'
+    }
+  }
+}
+annotate view ZC_CDDeErroresText with
+{
+  @UI.facet: [ {
+    id: 'CDDeErroresText', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Cód. de errores Text', 
+    position: 1 
+  } ]
+  @UI.identification: [ {
+    position: 1 , 
+    label: 'Langu'
+  } ]
+  @UI.lineItem: [ {
+    position: 1 , 
+    label: 'Langu'
+  } ]
+  Langu;
+  
+  @UI.identification: [ {
+    position: 2 
+  } ]
+  @UI.lineItem: [ {
+    position: 2 
+  } ]
+  Description;
+}

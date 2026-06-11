@@ -1,0 +1,40 @@
+projection implementation in class ZBP_C_CDDEERRORES_S unique;
+strict;
+use draft;
+define behavior for ZC_CDDeErrores_S alias CDDeErroresAll
+{
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use association _CDDeErrores { create ( augment ); with draft; }
+
+}
+
+define behavior for ZC_CDDeErrores alias CDDeErrores
+use etag
+{
+  field ( modify )
+   Description;
+
+
+  use update( augment );
+  use delete;
+
+  use association _CDDeErroresAll { with draft; }
+  use association _CDDeErroresText { create; with draft; }
+
+}
+
+define behavior for ZC_CDDeErroresText alias CDDeErroresText
+use etag
+{
+  use update;
+  use delete;
+
+  use association _CDDeErroresAll { with draft; }
+  use association _CDDeErrores { with draft; }
+
+}

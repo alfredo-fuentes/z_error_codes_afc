@@ -1,0 +1,109 @@
+managed implementation in class ZBP_I_CDDEERRORES_S unique;
+strict ( 2 );
+with draft;
+define behavior for ZI_CDDeErrores_S alias CDDeErroresAll
+draft table ZERRCODE_AF_D_S
+with unmanaged save
+lock master total etag LastChangedAtMax
+authorization master( global )
+{
+  field ( readonly )
+   SingletonID;
+
+  field ( notrigger )
+   SingletonID,
+   LastChangedAtMax;
+
+
+  update;
+  internal create;
+  internal delete;
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  association _CDDeErrores { create ( features : instance ); with draft; }
+
+}
+
+define behavior for ZI_CDDeErrores alias CDDeErrores ##UNMAPPED_FIELD
+persistent table ZERRCODE_AFC
+draft table ZERRCODE_AFC_D
+etag master LocalLastChangedAt
+lock dependent by _CDDeErroresAll
+authorization dependent by _CDDeErroresAll
+{
+  field ( mandatory : create )
+   ErrorCode;
+
+  field ( readonly )
+   SingletonID,
+   LastChangedAt,
+   LocalLastChangedAt;
+
+  field ( readonly : update )
+   ErrorCode;
+
+  field ( notrigger )
+   SingletonID,
+   LastChangedAt,
+   LocalLastChangedAt;
+
+
+  update( features : global );
+  delete( features : global );
+
+  mapping for ZERRCODE_AFC
+  {
+    ErrorCode = ERROR_CODE;
+    ConfigdeprecationCode = CONFIGDEPRECATION_CODE;
+    LastChangedAt = LAST_CHANGED_AT;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+  association _CDDeErroresAll { with draft; }
+  association _CDDeErroresText { create ( features : global ); with draft; }
+
+}
+
+define behavior for ZI_CDDeErroresText alias CDDeErroresText ##UNMAPPED_FIELD
+persistent table ZERRCODET_AFC
+draft table ZERRCODET_AFC_D
+etag master LocalLastChangedAt
+lock dependent by _CDDeErroresAll
+authorization dependent by _CDDeErroresAll
+{
+  field ( mandatory : create )
+   Langu;
+
+  field ( readonly )
+   SingletonID,
+   ErrorCode,
+   LocalLastChangedAt;
+
+  field ( readonly : update )
+   Langu;
+
+  field ( notrigger )
+   SingletonID,
+   LocalLastChangedAt;
+
+
+  update( features : global );
+  delete( features : global );
+
+  mapping for ZERRCODET_AFC
+  {
+    Langu = LANGU;
+    ErrorCode = ERROR_CODE;
+    Description = DESCRIPTION;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+  association _CDDeErroresAll { with draft; }
+  association _CDDeErrores { with draft; }
+
+}

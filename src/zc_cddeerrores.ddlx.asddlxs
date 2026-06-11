@@ -1,0 +1,56 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Cód. de errores', 
+    typeNamePlural: 'Cód. de errores', 
+    title: {
+      type: #STANDARD, 
+      value: 'ErrorCode'
+    }, 
+    description: {
+      type: #STANDARD, 
+      value: 'Description'
+    }
+  }
+}
+annotate view ZC_CDDeErrores with
+{
+  @UI.identification: [ {
+    position: 1 
+  } ]
+  @UI.lineItem: [ {
+    position: 1 
+  } ]
+  @UI.facet: [ {
+    id: 'CDDeErrores', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Cód. de errores', 
+    position: 1 
+  }, 
+  {
+    id: 'CDDeErroresText', 
+    type: #LINEITEM_REFERENCE, 
+    label: 'Cód. de errores Text', 
+    position: 2 , 
+    targetElement: '_CDDeErroresText'
+  } ]
+  ErrorCode;
+  
+  @UI.identification: [ {
+    position: 3 
+  } ]
+  @UI.lineItem: [ {
+    position: 3 
+  } ]
+  ConfigdeprecationCode;
+  
+  @UI.identification: [ {
+    hidden: true, 
+    position: 2 
+  } ]
+  @UI.lineItem: [ {
+    position: 2 
+  } ]
+  Description;
+}

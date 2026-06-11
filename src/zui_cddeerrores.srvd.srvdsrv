@@ -1,0 +1,6 @@
+@ObjectModel.leadingEntity.name: 'ZC_CDDeErrores_S'
+define service ZUI_CDDEERRORES {
+  expose ZC_CDDEERRORES_S as CDDeErroresAll;
+  expose ZC_CDDEERRORES as CDDeErrores;
+  expose ZC_CDDEERRORESTEXT as CDDeErroresText;
+}

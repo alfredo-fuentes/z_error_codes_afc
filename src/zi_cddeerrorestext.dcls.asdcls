@@ -1,0 +1,5 @@
+@MappingRole: true
+define role ZI_CDDeErroresText {
+  grant select on ZI_CDDeErroresText
+  where INHERITING CONDITIONS FROM ENTITY ZI_CDDeErrores;
+}

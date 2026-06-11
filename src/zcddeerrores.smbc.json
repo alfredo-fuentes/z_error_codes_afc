@@ -1,0 +1,47 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Maintain Cód. de errores",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "serviceConfiguration": {
+    "serviceBinding": "ZUI_CDDEERRORES_O4",
+    "serviceName": "ZUI_CDDEERRORES_O4",
+    "serviceVersion": "0001",
+    "rootEntitySet": "CDDeErroresAll",
+    "name": "Cód. de errores",
+    "transportObject": "ZCDDEERROREST",
+    "configurationGroup": "",
+    "skipRootEntity": true
+  },
+  "appConfiguration": {
+    "listReport": {},
+    "objectPages": [
+      {
+        "entitySet": "CDDeErroresAll",
+        "variantManagement": "control"
+      }
+    ],
+    "tableSettings": [
+      {
+        "entitySet": "CDDeErrores",
+        "tableType": "gridTable",
+        "selectAll": true,
+        "rowCountMode": "auto",
+        "frozenColumnCount": 1,
+        "creationModeName": "inlineCreationRows",
+        "createAtEnd": true,
+        "widthIncludingColumnHeader": true
+      },
+      {
+        "entitySet": "CDDeErroresText",
+        "tableType": "gridTable",
+        "selectAll": true,
+        "creationModeName": "inlineCreationRows",
+        "createAtEnd": true,
+        "widthIncludingColumnHeader": true
+      }
+    ]
+  }
+}
